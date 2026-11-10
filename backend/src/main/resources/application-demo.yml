@@ -1,0 +1,7 @@
+# Perfil de demonstração (vídeo do pitch): a reserva vale só 1 minuto,
+# para mostrar a expiração e o aviso ao próximo candidato.
+app:
+  reserva:
+    minutos: 1
+  agendador:
+    intervalo-ms: 5000

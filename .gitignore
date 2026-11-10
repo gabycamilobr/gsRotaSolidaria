@@ -1,0 +1,22 @@
+# Java / Maven
+backend/target/
+*.class
+*.log
+
+# Node / Vite
+node_modules/
+frontend/dist/
+frontend/dev-dist/
+.env
+.env.local
+.env.*.local
+
+# Firebase (nunca versionar a conta de serviço)
+*firebase-adminsdk*.json
+service-account*.json
+
+# IDEs e SO
+.idea/
+.vscode/
+*.iml
+.DS_Store
