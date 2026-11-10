@@ -90,3 +90,13 @@ export function useAoReceberAviso(callback) {
     return () => window.removeEventListener('rota:atualizar', f)
   }, [])
 }
+
+/** Recarrega periodicamente (só com a aba visível) – ex.: a lista de lotes some quando outra ONG reserva. */
+export function useAtualizarACada(callback, ms = INTERVALO_MS) {
+  const ref = useRef(callback)
+  ref.current = callback
+  useEffect(() => {
+    const id = setInterval(() => { if (document.visibilityState === 'visible') ref.current() }, ms)
+    return () => clearInterval(id)
+  }, [ms])
+}

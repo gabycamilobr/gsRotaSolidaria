@@ -1,0 +1,28 @@
+# =====================================================================
+# SOMENTE PARA DESENVOLVIMENTO LOCAL.
+# Sobe um PostgreSQL 16 com PostGIS para rodar a API na sua máquina.
+# Em produção o banco é o Azure Database for PostgreSQL – Flexible Server (PaaS);
+# este arquivo não é usado no deploy.
+#   docker compose up -d        # sobe o banco
+#   docker compose down -v      # derruba e apaga os dados (recomeça o seed)
+# =====================================================================
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: rota-solidaria-postgres-dev
+    environment:
+      POSTGRES_DB: rotasolidaria
+      POSTGRES_USER: rota
+      POSTGRES_PASSWORD: rota
+    ports:
+      - "5432:5432"
+    volumes:
+      - dados-dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rota -d rotasolidaria"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  dados-dev:

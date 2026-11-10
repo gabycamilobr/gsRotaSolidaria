@@ -3,7 +3,7 @@ import Icone from '../../components/Icone'
 import { Cabecalho, Carregando, Erro } from '../../components/Comum'
 import { urlFoto } from '../../lib/api'
 import { distancia, hora, numero, quantidade } from '../../lib/formatos'
-import { useAoReceberAviso } from '../../lib/notificacoes'
+import { useAoReceberAviso, useAtualizarACada } from '../../lib/notificacoes'
 import { useDados } from '../../lib/useDados'
 
 export function CartaoLote({ lote, para }) {
@@ -28,6 +28,7 @@ export function CartaoLote({ lote, para }) {
 export default function Proximos() {
   const { dados, erro, carregando, recarregar } = useDados('/api/lotes/proximos')
   useAoReceberAviso(recarregar)
+  useAtualizarACada(recarregar)
   return (
     <div className="pilha-grande">
       <Cabecalho eyebrow="Lotes próximos" titulo="Comida perto de vocês">
